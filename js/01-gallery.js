@@ -30,6 +30,12 @@ document.addEventListener("DOMContentLoaded", function () {
       const src = event.target.dataset.source;
       const alt = event.target.getAttribute("alt");
 
+      const instance = basicLightbox.create(`
+    <img src="${src}">
+`);
+
+      instance.show();
+
       // You can handle what happens when an image is clicked,
       // for example, showing the image in a modal or opening it in a new window.
       console.log("Image source:", src);
