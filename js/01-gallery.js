@@ -1,48 +1,40 @@
-import { galleryItems } from "./gallery-items";
+import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-console.log(galleryItems);
+document.addEventListener("DOMContentLoaded", function () {
+  const gallery = document.querySelector(".gallery");
 
-// Przykładowa tablica obiektów z danymi o obrazkach
-const galleryItems = [
-  {
-    smallImage: "small-image1.jpg",
-    largeImage: "large-image1.jpg",
-    alt: "Image 1 description",
-  },
-  {
-    smallImage: "small-image2.jpg",
-    largeImage: "large-image2.jpg",
-    alt: "Image 2 description",
-  },
-  // Dodaj więcej obiektów galerii według potrzeb
-];
+  galleryItems.forEach((item) => {
+    const li = document.createElement("li");
+    li.classList.add("gallery__item");
 
-// Funkcja do tworzenia elementów galerii
-function createGalleryItem(item) {
-  const li = document.createElement("li");
-  const link = document.createElement("a");
-  const image = document.createElement("img");
+    const a = document.createElement("a");
+    a.classList.add("gallery__link");
+    a.setAttribute("href", item.original);
 
-  li.classList.add("gallery-item");
-  link.classList.add("gallery-link");
-  image.classList.add("gallery-image");
+    const img = document.createElement("img");
+    img.classList.add("gallery__image");
+    img.setAttribute("src", item.preview);
+    img.setAttribute("alt", item.description);
+    img.setAttribute("data-source", item.original);
 
-  link.href = item.largeImage;
-  image.src = item.smallImage;
-  image.alt = item.alt;
+    a.appendChild(img);
+    li.appendChild(a);
+    gallery.appendChild(li);
+  });
 
-  link.appendChild(image);
-  li.appendChild(link);
+  gallery.addEventListener("click", function (event) {
+    event.preventDefault();
 
-  return li;
-}
+    if (event.target.nodeName === "IMG") {
+      const src = event.target.dataset.source;
+      const alt = event.target.getAttribute("alt");
 
-// Pobierz element listy galerii
-const galleryList = document.querySelector(".gallery");
-
-// Dodaj elementy galerii do listy
-galleryItems.forEach((item) => {
-  const galleryItem = createGalleryItem(item);
-  galleryList.appendChild(galleryItem);
+      // You can handle what happens when an image is clicked,
+      // for example, showing the image in a modal or opening it in a new window.
+      console.log("Image source:", src);
+      console.log("Image alt:", alt);
+    }
+  });
 });
+console.log(galleryItems);
