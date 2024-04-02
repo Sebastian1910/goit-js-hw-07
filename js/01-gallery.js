@@ -36,8 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       instance.show();
 
-      // You can handle what happens when an image is clicked,
-      // for example, showing the image in a modal or opening it in a new window.
       console.log("Image source:", src);
       console.log("Image alt:", alt);
     }
