@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     img.setAttribute("src", item.preview);
     img.setAttribute("alt", item.description);
     img.setAttribute("data-source", item.original);
+    img.setAttribute("title", item.description); // Dodanie opisu jako tytułu obrazka
 
     a.appendChild(img);
     li.appendChild(a);
@@ -26,6 +27,10 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
   });
 
-  const lightbox = new SimpleLightbox(".gallery a");
+  const lightbox = new SimpleLightbox(".gallery a", {
+    captions: true, // Włączenie wyświetlania podpisów
+    captionDelay: 250, // Ustawienie opóźnienia w wyświetlaniu podpisu
+  });
+
   console.log(galleryItems);
 });

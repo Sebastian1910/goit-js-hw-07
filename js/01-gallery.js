@@ -1,9 +1,8 @@
 import { galleryItems } from "./gallery-items.js";
-// Change code below this line
+const gallery = document.querySelector(".gallery");
 
-document.addEventListener("DOMContentLoaded", function () {
-  const gallery = document.querySelector(".gallery");
-
+// Funkcja do dodawania elementów galerii
+function addGalleryItems() {
   galleryItems.forEach((item) => {
     const li = document.createElement("li");
     li.classList.add("gallery__item");
@@ -22,24 +21,30 @@ document.addEventListener("DOMContentLoaded", function () {
     li.appendChild(a);
     gallery.appendChild(li);
   });
+}
 
-  gallery.addEventListener("click", function (event) {
-    event.preventDefault();
-
-    if (event.target.nodeName === "IMG") {
-      const src = event.target.dataset.source;
-      const alt = event.target.getAttribute("alt");
-
-      const instance = basicLightbox.create(`
-    <img src="${src}">
-`);
-
-      instance.show();
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape") {
-          instance.close();
-        }
-      });
-    }
-  });
+// Dodanie elementów galerii po załadowaniu zawartości DOM
+document.addEventListener("DOMContentLoaded", function () {
+  addGalleryItems();
 });
+
+// Obsługa kliknięcia na obrazek
+gallery.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  if (event.target.nodeName === "IMG") {
+    const src = event.target.dataset.source;
+    const alt = event.target.getAttribute("alt");
+
+    const instance = basicLightbox.create(`
+      <img src="${src}">
+    `);
+
+    instance.show();
+
+    console.log("Image source:", src);
+    console.log("Image alt:", alt);
+  }
+});
+
+console.log(galleryItems);
