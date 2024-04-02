@@ -35,9 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
 `);
 
       instance.show();
-
-      console.log("Image source:", src);
-      console.log("Image alt:", alt);
     }
   });
 });
