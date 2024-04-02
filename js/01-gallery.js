@@ -35,6 +35,11 @@ document.addEventListener("DOMContentLoaded", function () {
 `);
 
       instance.show();
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          instance.close();
+        }
+      });
     }
   });
 });
