@@ -24,22 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   gallery.addEventListener("click", function (event) {
     event.preventDefault();
-
-    if (event.target.nodeName === "IMG") {
-      const src = event.target.dataset.source;
-      const alt = event.target.getAttribute("alt");
-
-      const instance = basicLightbox.create(`
-        <img src="${src}">
-      `);
-
-      instance.show();
-
-      console.log("Image source:", src);
-      console.log("Image alt:", alt);
-    }
   });
 
-  const lightbox = new SimpleLightbox(".gallery__link");
+  const lightbox = new SimpleLightbox(".gallery a");
   console.log(galleryItems);
 });
